@@ -1,0 +1,9 @@
+Web Crawler Stages
+
+1. Root URLs (cmdline and/or file input)
+2. Single HTTP request
+3. Multiple, concurrent/parallel HTTP requests
+4. Visited URL tracking
+5. Link extraction (HTML parser, or regex as a last resort)
+6. Result storage
+7. Resource limitation
