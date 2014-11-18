@@ -1,3 +1,9 @@
+---
+title: Erlang Crawler
+tags: dev,erlang,crawler
+date: 2014-11-18T13:25
+---
+
 The first entry in this series will explore Erlang.
 
 ## Installation
