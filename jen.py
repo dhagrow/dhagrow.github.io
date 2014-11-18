@@ -1,18 +1,19 @@
+#! /usr/bin/env python
+
+"""
+jen.py
+
+A static website generator.
+"""
+
 import os
-import shutil
 
 import hoep
 from mako import template
 
-SITE_DIR = 'site'
+ROOT_DIR = os.path.dirname(__file__)
 POSTS_DIR = 'content/posts'
 TEMPLATE_DIR = 'templates'
-
-def ensure_dir(path):
-    try:
-        os.makedirs(path)
-    except OSError:
-        pass
 
 def gather_posts():
     for fname in os.listdir(POSTS_DIR):
@@ -21,8 +22,6 @@ def gather_posts():
             yield file.read()
 
 def main():
-    ensure_dir(SITE_DIR)
-    
     # gather posts
     posts = gather_posts()
     
@@ -35,12 +34,9 @@ def main():
         
         rendered = tmpl.render(posts=posts)
         
-        out_fname = os.path.join(SITE_DIR, os.path.basename(fname))
+        out_fname = os.path.join(ROOT_DIR, os.path.basename(fname))
         with open(out_fname, 'w+') as file:
             file.write(rendered)
-    
-    # copy static files
-    shutil.copytree('css', os.path.join(SITE_DIR, 'css'))
 
 if __name__ == '__main__':
     main()
