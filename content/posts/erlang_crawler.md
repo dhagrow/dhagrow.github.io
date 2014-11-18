@@ -1,0 +1,33 @@
+The first entry in this series will explore Erlang.
+
+## Installation
+
+Should be simple on Linux. For a Debian-based system an apt-get is enough:
+    
+~~~
+$ sudo apt-get install erlang
+~~~
+
+## Input
+
+Execution from the command-line uses the ~~~escript~~~ command. The following
+script is adapted straight from the ~~~escript~~~ manpage and simply prints out
+a string entered from the command-line.
+
+~~~
+#!/usr/bin/env escript
+
+main([String]) ->
+    try
+        io:format("~s~n", [String])
+    catch
+        _:_ ->
+            usage()
+    end;
+main(_) ->
+    usage().
+
+usage() ->
+    io:format("usage: echo <input>~n"),
+    halt(1).
+~~~
