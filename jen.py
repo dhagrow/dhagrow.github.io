@@ -9,56 +9,77 @@ A static website generator.
 import io
 import os
 import collections
+from datetime import datetime
 
 import hoep
 import profig
 from mako import template
+from pygments import highlight
+from pygments.lexers import get_lexer_by_name
+from pygments.formatters import HtmlFormatter
 
 ROOT_DIR = os.path.dirname(__file__)
 POSTS_DIR = 'content/posts'
 TEMPLATE_DIR = 'templates'
 
-class JenFormat(profig.IniFormat):
-    delimeter = b': '
+class Renderer(hoep.Hoep):
+    def block_code(self, text, language):
+        lexer = get_lexer_by_name(language or 'text', stripall=True)
+        formatter = HtmlFormatter(linenos=True, cssclass='source')
+        return highlight(text, lexer, formatter)
 
-Meta = collections.namedtuple('Meta', 'title tags date')
+def render(s):
+    return Renderer(hoep.EXT_FENCED_CODE).render(s)
+
+class Meta(collections.namedtuple('Meta', 'title tags date')):
+    @classmethod
+    def from_file(cls, file):
+        cfg = profig.Config(file)
+        
+        cfg.format.delimeter = b': '
+        cfg.coercer.register(datetime,
+            lambda x: x.isoformat(b' '),
+            lambda x: datetime.strptime(x, b'%Y-%m-%d %H:%M'))
+        
+        sec = cfg.section('default')
+        sec.init('tags', [])
+        sec.init('date', datetime.now())
+        
+        cfg.read()
+        return cls(**sec)
 
 class Post(object):
     def __init__(self, meta, content):
-        self.meta = Meta(**meta)
+        self.meta = meta
         self.content = content
-        print self.meta
-        print self.content
     
     @classmethod
     def from_file(self, file):
-        content = io.BytesIO()
-        metadata = io.BytesIO()
+        meta_buf = io.BytesIO()
+        content_buf = io.BytesIO()
         state = None
         
         for line in file:
             sline = line.strip()
             
             if state == 'content':
-                content.write(line)
+                content_buf.write(line)
             
             elif state == 'metadata':
                 if sline.endswith('---'):
                     state = 'content'
                     continue
-                metadata.write(line)
+                meta_buf.write(line)
             
             elif sline.startswith('---'):
                 state = 'metadata'
             
             else:
-                content.write(line)
+                content_buf.write(line)
         
-        meta = profig.Config(metadata, format=JenFormat)
-        meta.init('default.tags', [])
-        meta.read()
-        
-        return Post(meta.section('default'), content.getvalue())
+        meta = Meta.from_file(meta_buf)
+        content = render(content_buf.getvalue().decode('utf8'))
+        return Post(meta, content)
 
 def gather_posts():
     for fname in os.listdir(POSTS_DIR):

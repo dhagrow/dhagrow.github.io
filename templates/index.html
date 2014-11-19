@@ -9,6 +9,7 @@
 
   <link rel="stylesheet" href="css/pure-min.css">
   <link rel="stylesheet" href="css/blog.css">
+  <link rel="stylesheet" href="css/source.css">
 </head>
 <body>
 
@@ -73,24 +74,27 @@
 
         <div class="posts">
           <h1 class="content-subhead">Crawler Prototypes</h1>
-
+          
+        %for post in posts:
           <section class="post">
             <header class="post-header">
-              <h2 class="post-title">Erlang Crawler</h2>
+              <h2 class="post-title">${post.meta.title}</h2>
 
               <p class="post-meta">
-                <a class="post-category post-category-dev" href="#">dev</a>
-                <a class="post-category post-category-erlang" href="#">erlang</a>
-                <a class="post-category post-category-crawler" href="#">crawler</a>
+              %for tag in post.meta.tags:
+                <a class="post-category post-category-${tag}" href="#">${tag}</a>
+              %endfor
               </p>
             </header>
 
             <div class="post-description">
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                ${post.content}
               </p>
             </div>
           </section>
+        %endfor
+        
         </div>
 
         <div class="footer">
