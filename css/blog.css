@@ -17,6 +17,11 @@ h3 {
     font-weight: 100;
 }
 
+pre {
+    white-space: pre;
+    word-wrap: initial;
+}
+
 /* LAYOUT CSS */
 .pure-img-responsive {
     max-width: 100%;
@@ -140,6 +145,26 @@ h3 {
     margin-left: 1em;
     color: #fff;
     text-shadow: 0 1px 1px #333;
+}
+
+.sourcetable {
+    table-layout: fixed;
+    width: 100%;
+    border: 1px solid #DDD;
+}
+
+.linenos {
+    width: 30px;
+}
+
+.source {
+    padding: 0px 8px;
+    overflow-x: overlay;
+}
+
+.linenos {
+    background-color: #DFE0E7;
+    padding: 0px 4px;
 }
 
 .footer {
