@@ -18,6 +18,10 @@ pre {
 
 /* LAYOUT CSS */
 
+.pure-g [class *="pure-u"] {
+    font-family: "Source Sans Pro", Georgia, serif;
+}
+
 .sidebar {
     color: #fff;
     background: rgb(56, 65, 71);
@@ -26,7 +30,6 @@ pre {
 .brand-title,
 .brand-tagline {
     margin: 0;
-    font-family: "Source Sans Pro", Georgia, serif;
 }
 .brand-tagline {
     font-weight: 300;
@@ -92,7 +95,8 @@ pre {
     padding: 0.3em 1em;
     color: #fff;
     background: #999;
-    font-size: 80%;
+    font-size: 12px;
+    font-family: "Source Sans Pro", Georgia, serif;
 }
 .post-category-dev {
     background: #4d85d1;
