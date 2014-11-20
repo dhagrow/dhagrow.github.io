@@ -16,7 +16,8 @@ common scripting languages (Bash, Ruby, etc...).
 I love Python, and it's easily my most productive language, but I feel like
 I've stretched it beyond it's limits on several fronts.
 
-This series will focus on the implementation of a web crawler (aka. spider) in
+This series will focus on the implementation of a
+[web crawler](http://en.wikipedia.org/wiki/Web_crawler) (aka. spider) in
 various languages. With each language I will take the implementation through
 a number of stages which I hope will provide a reasonable survey of their
 capabilities.
