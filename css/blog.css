@@ -18,6 +18,7 @@ h3 {
 }
 
 pre {
+    margin: initial;
     white-space: pre;
     word-wrap: initial;
 }
