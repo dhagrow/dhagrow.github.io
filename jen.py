@@ -20,8 +20,15 @@ from pygments.lexers import get_lexer_by_name
 from pygments.formatters import HtmlFormatter
 
 ROOT_DIR = os.path.dirname(__file__)
-POSTS_DIR = 'content/posts'
-TEMPLATE_DIR = 'templates'
+POSTS_DIR = os.path.join(ROOT_DIR, 'content/posts')
+POSTS_OUTPUT_DIR = os.path.join(ROOT_DIR, 'posts')
+TEMPLATE_DIR = os.path.join(ROOT_DIR, 'templates')
+
+def ensure_dir(path):
+    try:
+        os.makedirs(path)
+    except OSError:
+        pass
 
 class Renderer(hoep.Hoep):
     def __init__(self):
@@ -58,12 +65,13 @@ class Meta(collections.namedtuple('Meta', 'title category tags date sticky')):
         return self.date.strftime('%Y | %b %d | %H:%M')
 
 class Post(object):
-    def __init__(self, meta, content):
+    def __init__(self, name, meta, content):
+        self.name = name
         self.meta = meta
         self.content = content
     
     @classmethod
-    def from_file(self, file):
+    def from_file(self, name, file):
         meta_buf = io.BytesIO()
         content_buf = io.BytesIO()
         state = None
@@ -88,13 +96,14 @@ class Post(object):
         
         meta = Meta.from_file(meta_buf)
         content = Renderer().render(content_buf.getvalue().decode('utf8'))
-        return Post(meta, content)
+        return Post(name, meta, content)
 
 def gather_posts():
     for fname in os.listdir(POSTS_DIR):
         fname = os.path.join(POSTS_DIR, fname)
+        name = os.path.splitext(os.path.basename(fname))[0]
         with open(fname) as file:
-            yield Post.from_file(file)
+            yield Post.from_file(name, file)
 
 def main():
     # gather posts
@@ -105,16 +114,31 @@ def main():
     posts = sorted(gather_posts(), key=sort_key, reverse=True)
     categories = itertools.groupby(posts, group_key)
     
-    # render templates
-    for fname in os.listdir(TEMPLATE_DIR):
-        print 'rendering:', fname
+    # render index
+    print 'rendering: index'
+    
+    fname = os.path.join(TEMPLATE_DIR, 'index.html')
+    tmpl = template.Template(filename=fname)
+    
+    rendered = tmpl.render(categories=categories)
+    
+    out_fname = os.path.join(ROOT_DIR, os.path.basename(fname))
+    with open(out_fname, 'w+') as file:
+        file.write(rendered)
+    
+    # render posts
+    for post in posts:
+        print 'rendering:', post.name
         
-        fname = os.path.join(TEMPLATE_DIR, fname)
+        fname = os.path.join(TEMPLATE_DIR, 'post.html')
         tmpl = template.Template(filename=fname)
         
+        categories = [(post.meta.category, [post])]
         rendered = tmpl.render(categories=categories)
         
-        out_fname = os.path.join(ROOT_DIR, os.path.basename(fname))
+        ensure_dir(POSTS_OUTPUT_DIR)
+        out_fname = os.path.join(POSTS_OUTPUT_DIR,
+            os.extsep.join([post.name, 'html']))
         with open(out_fname, 'w+') as file:
             file.write(rendered)
 
