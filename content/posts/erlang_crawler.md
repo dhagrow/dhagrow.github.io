@@ -1,6 +1,7 @@
 ---
 title: Erlang Crawler
-tags: dev, erlang, crawler
+tags: dev, crawler
+language: erlang
 date: 2014-11-18 13:25
 ---
 

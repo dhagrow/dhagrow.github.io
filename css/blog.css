@@ -1,8 +1,4 @@
-* {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans+Mono|Source+Sans+Pro|Merriweather);
 
 a {
     text-decoration: none;
@@ -13,40 +9,24 @@ a:focus {
     text-decoration: underline;
 }
 
-h3 {
-    font-weight: 100;
-}
-
 pre {
+    font-family: "Droid Sans Mono Dotted", "Droid Sans Mono", monospace;
     margin: initial;
     white-space: pre;
     word-wrap: initial;
 }
 
 /* LAYOUT CSS */
-.pure-img-responsive {
-    max-width: 100%;
-    height: auto;
-}
-
-#layout {
-    padding: 0;
-}
-
-.header {
-    text-align: center;
-    top: auto;
-    margin: 3em auto;
-}
 
 .sidebar {
-    background: rgb(56, 65, 71);
     color: #fff;
+    background: rgb(56, 65, 71);
 }
 
 .brand-title,
 .brand-tagline {
     margin: 0;
+    font-family: "Source Sans Pro", Georgia, serif;
 }
 .brand-tagline {
     font-weight: 300;
@@ -57,11 +37,6 @@ pre {
     margin: 0;
     padding: 0;
     list-style: none;
-}
-.nav-item {
-    display: inline-block;
-    *display: inline;
-    zoom: 1;
 }
 .nav-item a {
     background: transparent;
@@ -89,7 +64,6 @@ pre {
 }
 
 .content {
-    padding: 2em 1em 0;
     text-align: justify;
     max-width: 768px;
 }
@@ -102,15 +76,10 @@ pre {
     color: #222;
     margin-bottom: 0.2em;
 }
-.post-avatar {
-    border-radius: 50px;
-    float: right;
-    margin-left: 1em;
-}
 .post-description {
-    font-family: Georgia, "Cambria", serif;
-    color: #444;
-    line-height: 1.8em;
+    color: #222;
+    font: normal 14px/24px "Merriweather", Georgia, serif;
+    font-weight: 100;
 }
 .post-meta {
     color: #999;
@@ -125,27 +94,14 @@ pre {
     background: #999;
     font-size: 80%;
 }
-    .post-category-design {
-        background: #5aba59;
-    }
-    .post-category-dev {
-        background: #4d85d1;
-    }
-    .post-category-erlang {
-        background: #8156a7;
-    }
-    .post-category-crawler {
-        background: #df2d4f;
-    }
-
-.post-images {
-    margin: 1em 0;
+.post-category-dev {
+    background: #4d85d1;
 }
-.post-image-meta {
-    margin-top: -3.5em;
-    margin-left: 1em;
-    color: #fff;
-    text-shadow: 0 1px 1px #333;
+.post-category-language {
+    background: #8156a7;
+}
+.post-category-crawler {
+    background: #df2d4f;
 }
 
 .sourcetable {
@@ -154,16 +110,14 @@ pre {
     border: 1px solid #DDD;
 }
 
-.linenos {
-    width: 30px;
-}
-
 .source {
     padding: 0px 8px;
     overflow-x: overlay;
 }
 
 .linenos {
+    width: 20px;
+    text-align: right;
     background-color: #DFE0E7;
     padding: 0px 4px;
 }
@@ -171,24 +125,18 @@ pre {
 .footer {
     text-align: center;
     padding: 1em 0;
-}
-.footer a {
     color: #ccc;
     font-size: 80%;
-}
-.footer .pure-menu a:hover,
-.footer .pure-menu a:focus {
-    background: none;
 }
 
 @media (min-width: 48em) {
     .content {
         padding: 2em 3em 0;
-        margin-left: 25%;
+        margin-left: 20%;
     }
 
     .header {
-        margin: 80% 2em 0;
+        margin: 30% 2em 0;
         text-align: right;
     }
 

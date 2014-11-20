@@ -14,7 +14,7 @@
 <body>
 
   <div id="layout" class="pure-g">
-    <div class="sidebar pure-u-1-4">
+    <div class="sidebar pure-u-1-5">
       <div class="header">
         <h1 class="brand-title">dhagrow</h1>
         <h3 class="brand-tagline">prototype</h3>
@@ -32,7 +32,7 @@
       </div>
     </div>
 
-    <div id="content" class="content pure-u-3-4">
+    <div id="content" class="content pure-u-4-5">
       <div id="posts">
         <div class="posts">
           <h1 class="content-subhead">Intro</h1>
@@ -84,6 +84,7 @@
               %for tag in post.meta.tags:
                 <a class="post-category post-category-${tag}" href="#">${tag}</a>
               %endfor
+              <a class="post-category post-category-language" href="#">${post.meta.language}</a>
               </p>
             </header>
 
@@ -97,15 +98,7 @@
         
         </div>
 
-        <div class="footer">
-          <div class="pure-menu pure-menu-horizontal pure-menu-open">
-            <ul>
-              <li><a href="http://purecss.io/">About</a></li>
-              <li><a href="http://twitter.com/yuilibrary/">Twitter</a></li>
-              <li><a href="http://github.com/yahoo/pure/">GitHub</a></li>
-            </ul>
-          </div>
-        </div>
+        <div class="footer">omnia mutantur, nos et mutamur in illis</div>
         
       </div> <!-- posts -->
     </div> <!-- content -->

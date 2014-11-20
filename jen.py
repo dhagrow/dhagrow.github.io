@@ -31,7 +31,7 @@ class Renderer(hoep.Hoep):
 def render(s):
     return Renderer(hoep.EXT_FENCED_CODE).render(s)
 
-class Meta(collections.namedtuple('Meta', 'title tags date')):
+class Meta(collections.namedtuple('Meta', 'title tags language date')):
     @classmethod
     def from_file(cls, file):
         cfg = profig.Config(file)
