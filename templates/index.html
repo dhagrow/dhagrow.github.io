@@ -35,56 +35,20 @@
     <div id="content" class="content pure-u-4-5">
       <div id="posts">
         <div class="posts">
-          <h1 class="content-subhead">Intro</h1>
-
-          <section class="post">
-            <header class="post-header">
-              <p class="post-meta">
-                <a class="post-category post-category-design" href="#">intro</a> <a class="post-category post-category-dev" href="#">dev</a>
-              </p>
-            </header>
-
-            <div class="post-description">
-              <p>
-                This blog and it's inaugural series were born of my desire to explore new
-                frontiers.
-              </p>
-              <p>
-                For the past several years I have worked almost exclusively in Python and the
-                client-side web languages (Javascript/HTML/CSS). Occasionally, I've had
-                time to dig deeply into some C/C++, and go on small excursions with various
-                common scripting languages (Bash, Ruby, etc...).
-              </p>
-              <p>
-                I love Python, and it's easily my most productive language, but I feel like
-                I've stretched it beyond it's limits on several fronts.
-              </p>
-              <p>
-                This series will focus on the implementation of a web crawler (aka. spider) in
-                various languages. With each language I will take the implementation through
-                a number of stages which I hope will provide a reasonable survey of their
-                capabilities.
-              </p>
-              <p>
-                I begin with: Erlang.
-              </p>
-            </div>
-          </section>
-        </div>
-
-        <div class="posts">
-          <h1 class="content-subhead">Crawler Prototypes</h1>
-          
+      
+      %for category, posts in categories:
+          <h1 class="content-subhead">${category}</h1>
         %for post in posts:
           <section class="post">
             <header class="post-header">
+            %if post.meta.title:
               <h2 class="post-title">${post.meta.title}</h2>
-
+            %endif
+              <div class="post-date">${post.meta.date_text}</div>
               <p class="post-meta">
               %for tag in post.meta.tags:
                 <a class="post-category post-category-${tag}" href="#">${tag}</a>
               %endfor
-              <a class="post-category post-category-language" href="#">${post.meta.language}</a>
               </p>
             </header>
 
@@ -95,6 +59,7 @@
             </div>
           </section>
         %endfor
+      %endfor
         
         </div>
 

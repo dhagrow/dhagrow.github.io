@@ -84,6 +84,13 @@ pre {
     font: normal 14px/24px "Merriweather", Georgia, serif;
     font-weight: 100;
 }
+.post-date {
+    font-size: 12px;
+    width: 100%;
+    text-align: right;
+    line-height: 0px;
+    color: #666;
+}
 .post-meta {
     color: #999;
     font-size: 90%;

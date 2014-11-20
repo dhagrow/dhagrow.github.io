@@ -1,7 +1,7 @@
 ---
 title: F# Crawler
-tags: dev, crawler
-language: fsharp
+category: Crawler Prototypes
+tags: dev, crawler, fsharp
 date: 2014-11-19 13:25
 ---
 

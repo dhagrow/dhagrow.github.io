@@ -1,8 +1,8 @@
 ---
 title: Erlang Crawler
-tags: dev, crawler
-language: erlang
-date: 2014-11-18 13:25
+category: Crawler Prototypes
+tags: dev, crawler, erlang
+date: 2014-11-12 13:25
 ---
 
 The first entry in this series will explore Erlang.
