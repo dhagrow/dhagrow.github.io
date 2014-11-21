@@ -40,6 +40,10 @@ mark {
 .brand-tagline {
     margin: 0;
 }
+.brand-title a {
+    text-decoration: inherit;
+    color: inherit;
+}
 .brand-tagline {
     font-weight: 300;
     color: rgb(176, 202, 219);
@@ -87,6 +91,10 @@ mark {
     font-size: 2em;
     color: #222;
     margin-bottom: 0.2em;
+}
+.post-title a {
+    text-decoration: inherit;
+    color: inherit;
 }
 .post-description {
     color: #222;

@@ -14,7 +14,9 @@ from datetime import datetime
 
 import hoep
 import profig
-from mako import template
+
+from mako.lookup import TemplateLookup
+
 from pygments import highlight
 from pygments.lexers import get_lexer_by_name
 from pygments.formatters import HtmlFormatter
@@ -106,6 +108,8 @@ def gather_posts():
             yield Post.from_file(name, file)
 
 def main():
+    lookup = TemplateLookup(directories=[TEMPLATE_DIR])
+    
     # gather posts
     sort_key = lambda p: (
         p.meta.sticky, p.meta.date, p.meta.category, p.meta.date)
@@ -117,21 +121,17 @@ def main():
     # render index
     print 'rendering: index'
     
-    fname = os.path.join(TEMPLATE_DIR, 'index.tpl')
-    tmpl = template.Template(filename=fname)
-    
+    tmpl = lookup.get_template('index.tpl')
     rendered = tmpl.render(categories=categories)
     
-    out_fname = os.path.join(ROOT_DIR, os.path.basename(fname))
+    out_fname = os.path.join(ROOT_DIR, 'index.html')
     with open(out_fname, 'w+') as file:
         file.write(rendered)
     
     # render posts
+    tmpl = lookup.get_template('post.tpl')
     for post in posts:
         print 'rendering:', post.name
-        
-        fname = os.path.join(TEMPLATE_DIR, 'post.tpl')
-        tmpl = template.Template(filename=fname)
         
         categories = [(post.meta.category, [post])]
         rendered = tmpl.render(categories=categories)
