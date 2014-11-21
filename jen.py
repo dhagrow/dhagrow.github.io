@@ -117,7 +117,7 @@ def main():
     # render index
     print 'rendering: index'
     
-    fname = os.path.join(TEMPLATE_DIR, 'index.html')
+    fname = os.path.join(TEMPLATE_DIR, 'index.tpl')
     tmpl = template.Template(filename=fname)
     
     rendered = tmpl.render(categories=categories)
@@ -130,7 +130,7 @@ def main():
     for post in posts:
         print 'rendering:', post.name
         
-        fname = os.path.join(TEMPLATE_DIR, 'post.html')
+        fname = os.path.join(TEMPLATE_DIR, 'post.tpl')
         tmpl = template.Template(filename=fname)
         
         categories = [(post.meta.category, [post])]
