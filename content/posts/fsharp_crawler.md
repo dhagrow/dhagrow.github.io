@@ -9,7 +9,7 @@ Blah blah F#.
 
 ## Installation
 
-Should be simple on Linux. For a Debian-based system an apt-get is enough:
+Should be simple on Linux. For a Debian-based system an ==apt-get== is enough:
     
 ~~~sh
 $ sudo apt-get install fsharp

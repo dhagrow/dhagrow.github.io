@@ -16,6 +16,15 @@ pre {
     word-wrap: initial;
 }
 
+mark {
+    background-color: #ddd;
+    padding: 1px 3px;
+    border: 1px solid #aaa;
+    border-radius: 2px;
+    font-family: "Droid Sans Mono Dotted", "Droid Sans Mono", monospace;
+    font-size: 10pt;
+}
+
 /* LAYOUT CSS */
 
 .pure-g [class *="pure-u"] {

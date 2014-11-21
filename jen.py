@@ -32,7 +32,7 @@ def ensure_dir(path):
 
 class Renderer(hoep.Hoep):
     def __init__(self):
-        ext = hoep.EXT_FENCED_CODE
+        ext = hoep.EXT_FENCED_CODE | hoep.EXT_HIGHLIGHT
         super(Renderer, self).__init__(ext)
     
     def block_code(self, text, language):
